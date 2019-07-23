@@ -61,6 +61,8 @@ struct boss_magmadarAI : public ScriptedAI
     uint32 m_uiLavaBreathTimer;
     uint32 m_uiMagmaSpitTimer;
     uint32 m_uiRestoreTargetTimer;
+	bool isEnraged;
+	uint32 enrageTime;
 
     ScriptedInstance* m_pInstance;
 
@@ -73,6 +75,8 @@ struct boss_magmadarAI : public ScriptedAI
         m_uiLavaBreathTimer      = 30000;
         m_uiMagmaSpitTimer       = 10000;
         m_uiRestoreTargetTimer   = 0;
+		enrageTime = 8000;
+		isEnraged = false;
 
         if (!m_creature->HasAura(SPELL_MAGMASPIT))
             m_creature->CastSpell(m_creature, SPELL_MAGMASPIT, true);
@@ -81,11 +85,13 @@ struct boss_magmadarAI : public ScriptedAI
             m_pInstance->SetData(TYPE_MAGMADAR, NOT_STARTED);
     }
 
-    void Aggro(Unit* pWho)
-    {
-        if (m_pInstance)
-            m_pInstance->SetData(TYPE_MAGMADAR, IN_PROGRESS);
-    }
+	void Aggro(Unit* pWho)
+	{
+		if (m_pInstance) {
+			isEnraged = false;
+			m_pInstance->SetData(TYPE_MAGMADAR, IN_PROGRESS);
+		}
+	}
 
     void JustDied(Unit* Killer)
     {
@@ -98,17 +104,24 @@ struct boss_magmadarAI : public ScriptedAI
         if (!m_creature->SelectHostileTarget() || !m_creature->getVictim())
             return;
 
-        // Frenzy
-        if (m_uiFrenzyTimer < diff)
-        {
-            if (DoCastSpellIfCan(m_creature, SPELL_FRENZY) == CAST_OK)
-            {
-                DoScriptText(EMOTE_GENERIC_FRENZY_KILL, m_creature);
-                m_uiFrenzyTimer = urand(15000, 20000);
-            }
-        }
-        else
-            m_uiFrenzyTimer -= diff;
+		// Frenzy
+		if (m_uiFrenzyTimer < diff)
+		{
+			if (DoCastSpellIfCan(m_creature, SPELL_FRENZY) == CAST_OK)
+			{
+				DoScriptText(EMOTE_GENERIC_FRENZY_KILL, m_creature);
+				m_uiFrenzyTimer = urand(15000, 20000);
+				isEnraged = true;
+				enrageTime = 8000;
+			}
+		}
+		else {
+			m_uiFrenzyTimer -= diff;
+			enrageTime -= diff;
+			if (enrageTime <= 0) {
+				isEnraged = false;
+			}
+		}
 
         // Panic
         if (m_uiPanicTimer < diff)
@@ -186,13 +199,13 @@ struct boss_magmadarAI : public ScriptedAI
         else
             m_uiMagmaSpitTimer -= diff;
 
-        if (m_uiLavaBreathTimer < diff)
-        {
-            if (DoCastSpellIfCan(m_creature, SPELL_LAVA_BREATH) == CAST_OK)
-                m_uiLavaBreathTimer = urand(10000, 30000);
-        }
-        else
-            m_uiLavaBreathTimer -= diff;
+		if (m_uiLavaBreathTimer < diff && isEnraged)
+		{
+			if (DoCastSpellIfCan(m_creature, SPELL_LAVA_BREATH) == CAST_OK)
+				m_uiLavaBreathTimer = 4000;
+		}
+		else
+			m_uiLavaBreathTimer -= diff;
 
         DoMeleeAttackIfReady();
     }
