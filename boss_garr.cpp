@@ -255,7 +255,7 @@ struct mob_fireswornAI : ScriptedAI
 
                 if (Creature* pGarr = m_pInstance->GetSingleCreatureFromStorage(NPC_GARR))
                 {
-                    if (m_creature->GetDistance2d(pGarr) > 45.0f)
+                    if (m_creature->GetDistance2d(pGarr) > 100.0f)
                     {
                         CanCastResult result = DoCastSpellIfCan(m_creature, SPELL_SEPARATION_ANXIETY);
                         std::ostringstream log;
