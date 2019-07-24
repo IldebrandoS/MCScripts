@@ -380,13 +380,13 @@ struct boss_majordomoAI : public ScriptedAI
         else Reflection_Timer -= diff;
 
         //Blastwave_Timer
-        if (Blastwave_Timer < diff)
-        {
-            if (DoCastSpellIfCan(m_creature, SPELL_BLASTWAVE) == CAST_OK)
-                Blastwave_Timer = 10000;
-        }
-        else
-            Blastwave_Timer -= diff;
+        //if (Blastwave_Timer < diff)
+        //{
+           // if (DoCastSpellIfCan(m_creature, SPELL_BLASTWAVE) == CAST_OK)
+               // Blastwave_Timer = 10000;
+        //}
+       // else
+           // Blastwave_Timer -= diff;
 
         for (int i = 0; i < 2; i++)
         {
