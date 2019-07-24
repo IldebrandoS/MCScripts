@@ -52,7 +52,11 @@ struct boss_sulfuronAI : public ScriptedAI
     void Reset()
     {
         Darkstrike_Timer        = 10000;                     //These times are probably wrong
+<<<<<<< Updated upstream
         DemoralizingShout_Timer = 25000;
+=======
+        DemoralizingShout_Timer = 20000;
+>>>>>>> Stashed changes
         Inspire_Timer           = 13000;
         Knockdown_Timer         = 6000;
         Flamespear_Timer        = 2000;
@@ -124,7 +128,11 @@ struct boss_sulfuronAI : public ScriptedAI
             if (Unit* target = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 0))
             {
                 if (DoCastSpellIfCan(target, SPELL_FLAMESPEAR) == CAST_OK)
+<<<<<<< Updated upstream
                     Flamespear_Timer = urand(10000, 15000);
+=======
+                    Flamespear_Timer = urand(10000, 25000);
+>>>>>>> Stashed changes
             }
         }
         else Flamespear_Timer -= diff;

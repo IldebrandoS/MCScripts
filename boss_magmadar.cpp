@@ -68,8 +68,8 @@ struct boss_magmadarAI : public ScriptedAI
 
     void Reset()
     {
-        m_uiFrenzyTimer          = 15000;
-        m_uiPanicTimer           = 10000;
+        m_uiFrenzyTimer          = 20000;
+        m_uiPanicTimer           = 30000;
         m_uiLavaBombTimer        = 13000;
         m_uiLavaBombTriggerTimer = 0;
         m_uiLavaBreathTimer      = 30000;
@@ -110,7 +110,7 @@ struct boss_magmadarAI : public ScriptedAI
 			if (DoCastSpellIfCan(m_creature, SPELL_FRENZY) == CAST_OK)
 			{
 				DoScriptText(EMOTE_GENERIC_FRENZY_KILL, m_creature);
-				m_uiFrenzyTimer = urand(15000, 20000);
+				m_uiFrenzyTimer = urand(18000, 30000);
 				isEnraged = true;
 				enrageTime = 8000;
 			}
@@ -127,7 +127,7 @@ struct boss_magmadarAI : public ScriptedAI
         if (m_uiPanicTimer < diff)
         {
             if (DoCastSpellIfCan(m_creature->getVictim(), SPELL_PANIC) == CAST_OK)
-                m_uiPanicTimer = urand(30000, 35000);
+                m_uiPanicTimer = 30000;
         }
         else
             m_uiPanicTimer -= diff;
@@ -153,7 +153,7 @@ struct boss_magmadarAI : public ScriptedAI
                         Cre->SetObjectScale(0.0f);
                         Cre->setFaction(m_creature->getFaction());
                     }
-                    m_uiLavaBombTimer = urand(10000, 13000);
+                    m_uiLavaBombTimer = urand(10000, 20000);
                     m_uiLavaBombTriggerTimer = 500;
                     m_uiRestoreTargetTimer = 800;
                 }
