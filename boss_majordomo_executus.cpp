@@ -375,7 +375,7 @@ struct boss_majordomoAI : public ScriptedAI
 
             if (m_creature->getVictim())
                 m_creature->CastSpell(m_creature, Reflect, true);
-            Reflection_Timer = 30000;
+            Reflection_Timer = urand(15000, 30000);
         }
         else Reflection_Timer -= diff;
 
@@ -398,7 +398,8 @@ struct boss_majordomoAI : public ScriptedAI
                 if (uTarget && uTarget->IsPlayer() && DoCastSpellIfCan(uTarget, SPELL_TELEPORT) == CAST_OK)
                 {
                     DoResetThreat();
-                    TPDomo_Timer[i] = 20000 + rand() % 10000;
+                    //TPDomo_Timer[i] = 20000 + rand() % 10000;
+					TPDomo_Timer[i] = urand(10000, 15000);
                 }
             }
             else

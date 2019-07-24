@@ -55,7 +55,7 @@ struct boss_shazzrahAI : public ScriptedAI
         ShazzrahCurse_Timer = 10000;
         DeadenMagic_Timer = 5000;
         Countspell_Timer = 15000;
-        Blink_Timer = urand(25000, 30000);
+        Blink_Timer = urand(30000, 35000);
 
         if (m_pInstance && m_creature->isAlive())
             m_pInstance->SetData(TYPE_SHAZZRAH, NOT_STARTED);
@@ -82,7 +82,7 @@ struct boss_shazzrahAI : public ScriptedAI
         if (ArcaneExplosion_Timer < diff)
         {
             if (DoCastSpellIfCan(m_creature->getVictim(), SPELL_ARCANEEXPLOSION) == CAST_OK)
-                ArcaneExplosion_Timer = urand(3000, 5000);
+                ArcaneExplosion_Timer = 4000;
         }
         else ArcaneExplosion_Timer -= diff;
 
@@ -90,7 +90,7 @@ struct boss_shazzrahAI : public ScriptedAI
         if (ShazzrahCurse_Timer < diff)
         {
 			if (DoCastSpellIfCan(m_creature->getVictim(), SPELL_SHAZZRAHCURSE, CF_AURA_NOT_PRESENT) == CAST_OK)
-				ShazzrahCurse_Timer = 20000;
+				ShazzrahCurse_Timer = urand(22000, 28000);
         }
         else ShazzrahCurse_Timer -= diff;
 
@@ -98,7 +98,7 @@ struct boss_shazzrahAI : public ScriptedAI
         if (DeadenMagic_Timer < diff)
         {
             if (DoCastSpellIfCan(m_creature, SPELL_DEADENMAGIC) == CAST_OK)
-                DeadenMagic_Timer = urand(7000, 14000);
+                DeadenMagic_Timer = urand(7000, 8000);
         }
         else DeadenMagic_Timer -= diff;
 
@@ -106,7 +106,7 @@ struct boss_shazzrahAI : public ScriptedAI
         if (Countspell_Timer < diff)
         {
             if (DoCastSpellIfCan(m_creature->getVictim(), SPELL_COUNTERSPELL) == CAST_OK)
-                Countspell_Timer = urand(16000, 18000);
+                Countspell_Timer = urand(15000, 20000);
         }
         else Countspell_Timer -= diff;
 
@@ -125,7 +125,7 @@ struct boss_shazzrahAI : public ScriptedAI
                     m_creature->Attack(pTarget, true);
                 }
 
-                Blink_Timer = urand(25000, 35000);
+                Blink_Timer = urand(46000, 50000);
             }
         }
         else Blink_Timer -= diff;

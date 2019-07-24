@@ -52,7 +52,7 @@ struct boss_sulfuronAI : public ScriptedAI
     void Reset()
     {
         Darkstrike_Timer        = 10000;                     //These times are probably wrong
-        DemoralizingShout_Timer = 15000;
+        DemoralizingShout_Timer = 25000;
         Inspire_Timer           = 13000;
         Knockdown_Timer         = 6000;
         Flamespear_Timer        = 2000;
@@ -83,7 +83,7 @@ struct boss_sulfuronAI : public ScriptedAI
         if (DemoralizingShout_Timer < diff)
         {
             if (DoCastSpellIfCan(m_creature->getVictim(), SPELL_DEMORALIZINGSHOUT) == CAST_OK)
-                DemoralizingShout_Timer = urand(15000, 20000);
+                DemoralizingShout_Timer = urand(30000, 31000);
         }
         else DemoralizingShout_Timer -= diff;
 
@@ -106,7 +106,7 @@ struct boss_sulfuronAI : public ScriptedAI
             }
 
             if (DoCastSpellIfCan(m_creature, SPELL_INSPIRE) == CAST_OK)
-                Inspire_Timer = urand(20000, 26000);
+                Inspire_Timer = urand(15000, 24000);
         }
         else Inspire_Timer -= diff;
 
@@ -114,7 +114,7 @@ struct boss_sulfuronAI : public ScriptedAI
         if (Knockdown_Timer < diff)
         {
             if (DoCastSpellIfCan(m_creature->getVictim(), SPELL_KNOCKDOWN) == CAST_OK)
-                Knockdown_Timer = urand(12000, 15000);
+                Knockdown_Timer = 23000;
         }
         else Knockdown_Timer -= diff;
 
@@ -124,7 +124,7 @@ struct boss_sulfuronAI : public ScriptedAI
             if (Unit* target = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 0))
             {
                 if (DoCastSpellIfCan(target, SPELL_FLAMESPEAR) == CAST_OK)
-                    Flamespear_Timer = urand(12000, 16000);
+                    Flamespear_Timer = urand(10000, 15000);
             }
         }
         else Flamespear_Timer -= diff;

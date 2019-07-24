@@ -53,7 +53,7 @@ struct boss_baron_geddonAI : public ScriptedAI
 
     void Reset()
     {
-        m_uiIgniteManaTimer    = urand(10000, 15000);
+        m_uiIgniteManaTimer    = urand(25000, 30000);
         m_uiLivingBombTimer    = urand(15000, 20000);
         m_uiInfernoTimer       = urand(18000, 24000);
         m_uiRestoreTargetTimer = 0;
@@ -110,7 +110,7 @@ struct boss_baron_geddonAI : public ScriptedAI
                 {
                     m_creature->SetInFront(pTarget);
                     m_creature->SetTargetGuid(pTarget->GetObjectGuid());
-                    m_uiLivingBombTimer = urand(12000, 15000);
+                    m_uiLivingBombTimer = urand(9000, 20000);
                     m_uiRestoreTargetTimer = 800;
                 }
             }
@@ -137,7 +137,7 @@ struct boss_baron_geddonAI : public ScriptedAI
         if (m_uiIgniteManaTimer < diff)
         {
             if (DoCastSpellIfCan(m_creature, SPELL_IGNITEMANA) == CAST_OK)
-                m_uiIgniteManaTimer = urand(20000, 30000);
+                m_uiIgniteManaTimer = urand(27000, 30000);
         }
         else
             m_uiIgniteManaTimer -= diff;
@@ -146,7 +146,7 @@ struct boss_baron_geddonAI : public ScriptedAI
         {
             if (DoCastSpellIfCan(m_creature, SPELL_INFERNO) == CAST_OK)
             {
-                m_uiInfernoTimer = urand(18000, 24000);
+                m_uiInfernoTimer = urand(20000, 30000);
                 InfCount = 0;
                 Tick = 1000;
                 m_bInferno = true;

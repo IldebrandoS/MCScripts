@@ -138,7 +138,7 @@ struct boss_garrAI : ScriptedAI
         if (m_uiAntiMagicPulseTimer < diff)
         {
             if (DoCastSpellIfCan(m_creature, SPELL_ANTIMAGICPULSE) == CAST_OK)
-                m_uiAntiMagicPulseTimer = urand(10000, 15000);
+                m_uiAntiMagicPulseTimer = urand(16000, 20000);
         }
         else
             m_uiAntiMagicPulseTimer -= diff;
