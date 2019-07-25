@@ -108,27 +108,27 @@ struct boss_garrAI : ScriptedAI
         m_creature->LogScriptInfo(log);
     }
 
-    bool DoExplodeFiresworn() const
-    {
-        if (m_lFiresworn.empty())
-            return false;
+    //bool DoExplodeFiresworn() const
+    //{
+        //if (m_lFiresworn.empty())
+       //     return false;
 
-        auto itr = m_lFiresworn.begin();
-        std::advance(itr, rand() % m_lFiresworn.size());
+      //  auto itr = m_lFiresworn.begin();
+      //  std::advance(itr, rand() % m_lFiresworn.size());
 
-        if (auto pFiresworn = m_creature->GetMap()->GetCreature(*itr))
-        { 
-            DoScriptText(EMOTE_MASSIVE_ERUPTION, m_creature);
-            m_creature->CastSpell(pFiresworn, SPELL_ERUPTION_TRIGGER, true);
-            return true;
-        }
+     //   if (auto pFiresworn = m_creature->GetMap()->GetCreature(*itr))
+     //   { 
+     //       DoScriptText(EMOTE_MASSIVE_ERUPTION, m_creature);
+      //      m_creature->CastSpell(pFiresworn, SPELL_ERUPTION_TRIGGER, true);
+       //     return true;
+      //  }
 
-        std::ostringstream log;
-        log << "Unable to access Firesworn.";
-        m_creature->LogScriptInfo(log);
+       // std::ostringstream log;
+       // log << "Unable to access Firesworn.";
+       // m_creature->LogScriptInfo(log);
 
-        return false;
-    }
+        //return false;
+    //}
 
     void UpdateAI(const uint32 diff) override
     {
@@ -151,16 +151,16 @@ struct boss_garrAI : ScriptedAI
         else
             m_uiMagmaShacklesTimer -= diff;
 
-        if (m_creature->GetHealthPercent() < 50.0f)
-        {
-            if (m_uiExplodeTimer < diff)
-            {
-                if (DoExplodeFiresworn())
-                    m_uiExplodeTimer = urand(10000, 20000);
-            }
-            else
-                m_uiExplodeTimer -= diff;
-        }
+        //if (m_creature->GetHealthPercent() < 50.0f)
+       // {
+            //if (m_uiExplodeTimer < diff)
+           // {
+               // if (DoExplodeFiresworn())
+                  //  m_uiExplodeTimer = urand(10000, 20000);
+           // }
+            //else
+              //  m_uiExplodeTimer -= diff;
+        //}
 
         DoMeleeAttackIfReady();
     }
