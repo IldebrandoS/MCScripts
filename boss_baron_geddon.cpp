@@ -183,6 +183,7 @@ struct boss_baron_geddonAI : public ScriptedAI
                     case 8:
                         Damage = 2500;
                         m_bInferno = false;
+						Sleep(750); //seemed to fix him moving with Inferno?
                         m_creature->clearUnitState(UNIT_STAT_ROOT);
                         break;
                 }

@@ -5,6 +5,7 @@
 #include "scriptPCH.h"
 #include "molten_core.h"
 
+
 enum
 {
     // Garr spells
