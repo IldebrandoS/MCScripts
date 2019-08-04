@@ -490,11 +490,11 @@ struct boss_ragnarosAI : ScriptedAI
             {
                 Player* pPlayer = m_creature->GetMap()->GetPlayer((*itr)->getUnitGuid());
                 if (pPlayer && pPlayer->isAlive() && pPlayer->getPowerType() == POWER_MANA && !pPlayer->IsGameMaster())
-                    manaPlayers.push_back(pPlayer);
+                    manaPlayers.push_back(pPlayer);				
             }
             if (!manaPlayers.empty())
             {
-                if (Player* pTarget = manaPlayers[urand(0, manaPlayers.size() - 1)])
+                if (Player* pTarget = manaPlayers[	urand(0, manaPlayers.size() - 1)])
                 {
                     if (DoCastSpellIfCan(pTarget, SPELL_MIGHT_OF_RAGNAROS) == CAST_OK)
                     {

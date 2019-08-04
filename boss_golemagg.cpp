@@ -106,7 +106,7 @@ struct boss_golemaggAI : public ScriptedAI
             if (Unit* pTarget = m_creature->SelectAttackingTarget(ATTACKING_TARGET_RANDOM, 0))
             {
                 if (DoCastSpellIfCan(pTarget, SPELL_PYROBLAST) == CAST_OK)
-                    m_uiPyroblastTimer = (3 + rand() % 7) * IN_MILLISECONDS;
+                    m_uiPyroblastTimer = (3 + rand() % 8) * IN_MILLISECONDS;
             }
         }
         else
